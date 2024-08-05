@@ -22,7 +22,7 @@ export function Ranking() {
                         <th>Name</th>
                         <th>Score</th>
                     </tr>
-                    {orderBy((users || []), 'score', 'desc').map((player: any, idx: number) =>
+                    {orderBy((users || []), 'score', 'desc').map((player, idx: number) =>
                         <tr key={idx} className={clsx(
                             'text-center',
                             (idx % 2) ? 'bg-gray-800' : 'bg-gray-700',
@@ -33,7 +33,7 @@ export function Ranking() {
                         )}>
                             <td className='border-0'>{idx + 1}</td>
                             <td className='border-0'>{roundInfo.roundNo > 1 ? player.name : '-'}</td>
-                            <td className='border-0'>{roundInfo.roundNo > 1 ? player.score : '-'}</td>
+                            <td className='border-0'>{roundInfo.roundNo > 1 ? player.score.toLocaleString() : '-'}</td>
                         </tr>
                     )}
                 </tbody>

@@ -2,7 +2,7 @@ import { useRoundInfo, useUser } from "@/app/lib/hooks";
 import clsx from "clsx";
 import { useDispatch } from "react-redux";
 import { startNewRound, updateUser } from "../../lib/features/appStateSlice";
-import { StepInput } from "../step-input";
+import { StepInput } from "./step-input";
 
 export const UserInput = () => {
     const dispatch = useDispatch();
@@ -29,7 +29,8 @@ export const UserInput = () => {
                         roundInfo.started ? 'bg-gray-500' : 'bg-primary-gradient'
                     )
                 }
-                onClick={() => dispatch(startNewRound())} disabled={roundInfo.started}>
+                onClick={() => dispatch(startNewRound())}
+                disabled={roundInfo.started || !user || user.multiplier < 1 || user.multiplier > 10 || user.points <= 0 || user.points > user.score}>
                 {roundInfo.started ? 'Started' : 'Start'}
             </button >
         </>

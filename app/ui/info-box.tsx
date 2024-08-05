@@ -22,7 +22,7 @@ export function InfoBox() {
         <div className="flex justify-between w-full gap-2 mb-3 h-14">
             <div className="border border-gray-500 rounded-md bg-box-gradient p-1 w-full flex justify-between items-center px-2">
                 <div><PointsIcon className="color-primary" width={24} height={24} /></div>
-                <div>{loggedin ? user?.score : ''}</div>
+                <div>{loggedin ? user?.score?.toLocaleString() : ''}</div>
                 <div />
             </div>
             <div className="border border-gray-500 rounded-md bg-box-gradient p-1 w-full flex justify-between items-center px-2">
