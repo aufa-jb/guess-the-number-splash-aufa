@@ -61,6 +61,7 @@ export const appStateSlice = createSlice({
             for (let i = 0; i < state.users.length; i++) {
                 if (state.users[i].multiplier > state.targetMultiplier) {
                     state.users[i].score -= state.users[i].points;
+                    state.users[i].score = Math.max(0, state.users[i].score);
                 } else {
                     state.users[i].score += state.users[i].points * state.users[i].multiplier;
                 }
