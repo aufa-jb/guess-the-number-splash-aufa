@@ -2,10 +2,11 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { CURRENT_USER_ID } from '../lib/features/appStateSlice';
-import { useAppUsers, useRoundInfo } from '../lib/hooks';
+import { useAppUsers, useRoundInfo, useUser } from '../lib/hooks';
 import { RankingIcon } from '../lib/svg-icon';
 
 export function Ranking() {
+    const user = useUser();
     const users = useAppUsers();
     const roundInfo = useRoundInfo();
 
@@ -32,7 +33,7 @@ export function Ranking() {
 
                         )}>
                             <td className='border-0'>{idx + 1}</td>
-                            <td className='border-0'>{roundInfo.roundNo > 1 ? player.name : '-'}</td>
+                            <td className='border-0 capitalize'>{roundInfo.roundNo > 1 ? (user?.id === player.id ? 'you' : player.name) : '-'}</td>
                             <td className='border-0'>{roundInfo.roundNo > 1 ? player.score.toLocaleString() : '-'}</td>
                         </tr>
                     )}

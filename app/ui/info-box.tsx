@@ -27,7 +27,7 @@ export function InfoBox() {
             </div>
             <div className="border border-gray-500 rounded-md bg-box-gradient p-1 w-full flex justify-between items-center px-2">
                 <div><UserIcon className="color-primary" width={24} height={24} /></div>
-                <div>{loggedin ? user?.name : ''}</div>
+                <div className="capitalize">{loggedin ? user?.name : ''}</div>
                 <div />
             </div>
             <div className="border border-gray-500 rounded-md bg-box-gradient p-1 w-full flex justify-between items-center px-2">

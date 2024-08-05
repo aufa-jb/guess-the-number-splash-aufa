@@ -1,10 +1,11 @@
 'use client';
 import clsx from 'clsx';
 import { CURRENT_USER_ID } from '../lib/features/appStateSlice';
-import { useAppUsers, useRoundInfo } from '../lib/hooks';
+import { useAppUsers, useRoundInfo, useUser } from '../lib/hooks';
 import { RoundIcon } from '../lib/svg-icon';
 
 export function CurrentRound() {
+    const user = useUser();
     const users = useAppUsers();
     const roundInfo = useRoundInfo();
 
@@ -21,19 +22,19 @@ export function CurrentRound() {
                         <th>Points</th>
                         <th>Multiplier</th>
                     </tr>
-                    {(users || []).map((player: any, idx: number) =>
+                    {(users || []).map((player, idx: number) =>
                         <tr key={idx} className={clsx(
                             'text-center',
                             (idx % 2) ? 'bg-gray-800' : 'bg-gray-700',
                             (roundInfo.roundNo <= 1 || roundInfo.started) ? ''
                                 : (player.multiplier > roundInfo.targetMultiplier ? 'text-red-500' : 'text-green-500'),
                             {
-                                '!bg-gray-600': CURRENT_USER_ID === player.id
+                                '!bg-gray-600': user?.id === player.id
                             }
 
                         )}>
-                            <td className='border-0'>{player.name}</td>
-                            <td className='border-0'>{(roundInfo.roundNo <= 1 && !roundInfo.started) ? '-' : player.points}</td>
+                            <td className='border-0 capitalize'>{(user?.id === player.id ? 'you' : player.name)}</td>
+                            <td className='border-0'>{(roundInfo.roundNo <= 1 && !roundInfo.started) ? '-' : player.points.toLocaleString()}</td>
                             <td className='border-0'>{(roundInfo.roundNo <= 1 && !roundInfo.started) ? '-' : player.multiplier}</td>
                         </tr>
                     )}

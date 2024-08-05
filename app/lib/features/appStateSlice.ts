@@ -45,7 +45,7 @@ export const appStateSlice = createSlice({
         },
         startNewRound: (state) => {
             state.started = true;
-            state.targetMultiplier = Number((Math.random() * 10).toFixed(2));
+            state.targetMultiplier = Number((Math.random() * 9 + 1).toFixed(2));
             for (let user of state.users) {
                 if (user.id === CURRENT_USER_ID) continue;
                 const points = Math.ceil(Math.random() * user.score);
